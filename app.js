@@ -12,7 +12,7 @@ async function connectAndStartSetup() {
 			username,
 			password: accessToken
 		},
-		channels: ['wissididom', 'wissididombot']
+		channels: [username, 'sery_bot']
 	});
 	await client.connect().then(([server, port]) => {
 		var statusBox = document.getElementById('statusBox');
@@ -42,7 +42,7 @@ async function seryAuthorizationConfirmed() {
 	await join(client);
 }
 async function join(client) {
-	await client.say('wissididombot', '!join').then(() => {
+	await client.say('sery_bot', '!join').then(() => {
 		document.getElementById('seryJoin').innerHTML = 'Joined after having Sery_Bot authorized ✅';
 	}).catch(err => {
 		document.getElementById('seryJoin').innerHTML = 'Couldn\'t join after having Sery_Bot authorized ❌';
@@ -63,13 +63,13 @@ async function seryBanUnconfirmed() {
 }
 async function followban(client, on) {
 	if (on) {
-		await client.say('wissididombot', '!followban').then(() => {
+		await client.say('sery_bot', '!followban').then(() => {
 			document.getElementById('seryBan').innerHTML = 'Enabled Sery_Bot\'s ability to ban known bots ✅';
 		}).catch(err => {
 			document.getElementById('seryBan').innerHTML = 'Couldn\'t enable Sery_Bot\'s ability to ban known bots ❌';
 		});
 	} else {
-		await client.say('wissididombot', '!followbanoff').then(() => {
+		await client.say('sery_bot', '!followbanoff').then(() => {
 			document.getElementById('seryBan').innerHTML = 'Disabled Sery_Bot\'s ability to ban known bots ✅';
 		}).catch(err => {
 			document.getElementById('seryBan').innerHTML = 'Couldn\'t disable Sery_Bot\'s ability to ban known bots ❌';
@@ -84,13 +84,13 @@ async function seryOfflineLockUnconfirmed() {
 }
 async function offlinelock(client, on) {
 	if (on) {
-		await client.say('wissididombot', '!offlinelock').then(() => {
+		await client.say('sery_bot', '!offlinelock').then(() => {
 			document.getElementById('seryOfflineLock').innerHTML = 'Enabled Sery_Bot\'s Offline Lockdown ✅';
 		}).catch(err => {
 			document.getElementById('seryOfflineLock').innerHTML = 'Couldn\'t enable Sery_Bot\'s Offline Lockdown ❌';
 		});
 	} else {
-		await client.say('wissididombot', '!offlinelockoff').then(() => {
+		await client.say('sery_bot', '!offlinelockoff').then(() => {
 			document.getElementById('seryOfflineLock').innerHTML = 'Disabled Sery_Bot\'s Offline Lockdown ✅';
 		}).catch(err => {
 			document.getElementById('seryOfflineLock').innerHTML = 'Couldn\'t disable Sery_Bot\'s Offline Lockdown ❌';
@@ -105,13 +105,13 @@ async function seryOnlineNotifUnconfirmed() {
 }
 async function onlinenotif(client, on) {
 	if (on) {
-		await client.say('wissididombot', '!onlinenotif').then(() => {
+		await client.say('sery_bot', '!onlinenotif').then(() => {
 			document.getElementById('seryOnlineNotif').innerHTML = 'Enabled Sery_Bot\'s Online Notification ✅';
 		}).catch(err => {
 			document.getElementById('seryOnlineNotif').innerHTML = 'Couldn\'t enable Sery_Bot\'s Online Notification ❌';
 		});
 	} else {
-		await client.say('wissididombot', '!onlinenotifoff').then(() => {
+		await client.say('sery_bot', '!onlinenotifoff').then(() => {
 			document.getElementById('seryOnlineNotif').innerHTML = 'Disabled Sery_Bot\'s Online Notification ✅';
 		}).catch(err => {
 			document.getElementById('seryOnlineNotif').innerHTML = 'Couldn\'t disable Sery_Bot\'s Online Notification ❌';
