@@ -1,0 +1,33 @@
+.red {
+	color: red;
+}
+.green {
+	color: green;
+}
+body {
+	background-color: black;
+}
+a {
+	display: block;
+	width: 175px;
+	height: 25px;
+	background: #9146FF;
+	padding: 10px;
+	text-align: center;
+	border-radius: 5px;
+	color: white;
+	font-weight: bold;
+	line-height: 25px;
+	text-decoration: none;
+	margin: 5px;
+}
+#authorizeSeryBtn {
+	display: none;
+}
+button {
+	display: none;
+}
+span {
+	color: white;
+	margin: 5px;
+}
