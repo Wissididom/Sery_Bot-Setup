@@ -16,7 +16,7 @@ async function connectAndStartSetup() {
 	});
 	await client.connect().then(([server, port]) => {
 		var statusBox = document.getElementById('statusBox');
-		statusBox.innerText = `'Connected to ${server}:${port}`;
+		statusBox.innerText = `Connected to ${server}:${port}`;
 		statusBox.classList = 'green';
 		console.log(`Connected to ${server}:${port}`);
 	}).catch(err => {
