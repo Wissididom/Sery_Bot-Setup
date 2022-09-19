@@ -16,24 +16,24 @@ async function connectAndStartSetup() {
 	});
 	await client.connect().then(([server, port]) => {
 		var statusBox = document.getElementById('statusBox');
-		statusBox.innerHTML = 'Connected to ' + server + ':' + port;
+		statusBox.innerText = `'Connected to ${server}:${port}`;
 		statusBox.classList = 'green';
-		console.log('Connected to ' + server + ':' + port);
+		console.log(`Connected to ${server}:${port}`);
 	}).catch(err => {
 		var statusBox = document.getElementById('statusBox');
-		statusBox.innerHTML = 'Error connecting to Twitch Chat: ' + err;
+		statusBox.innerText = `Error connecting to Twitch Chat: ${err}`;
 		statusBox.classList = 'red';
-		console.error('Error connecting to Twitch Chat: ' + err);
+		console.error(`Error connecting to Twitch Chat: ${err}`);
 	});
 	if ((await client.mods(username)).includes('sery_bot')) {
-		document.getElementById('modSery').innerHTML = 'Made sure Sery_Bot a Mod ✅';
+		document.getElementById('modSery').innerText = 'Made sure Sery_Bot a Mod ✅';
 		document.getElementById('seryAuthorized').style.display = 'inline';
 	} else {
 		client.mod(username, 'sery_bot').then(() => {
-			document.getElementById('modSery').innerHTML = 'Made sure Sery_Bot a Mod ✅';
+			document.getElementById('modSery').innerText = 'Made sure Sery_Bot a Mod ✅';
 			document.getElementById('seryAuthorized').style.display = 'inline';
 		}).catch(err => {
-			document.getElementById('modSery').innerHTML = 'Couldn\'t make sure Sery_Bot a Mod ❌: ' + err;
+			document.getElementById('modSery').innerText = `Couldn't make sure Sery_Bot a Mod ❌: ${err}`;
 			document.getElementById('authorizeSeryBtn').style.display = 'none';
 		});
 	}
@@ -43,9 +43,9 @@ async function seryAuthorizationConfirmed() {
 }
 async function join(client) {
 	await client.say('sery_bot', '!join').then(() => {
-		document.getElementById('seryJoin').innerHTML = 'Joined after having Sery_Bot authorized ✅';
+		document.getElementById('seryJoin').innerText = 'Joined after having Sery_Bot authorized ✅';
 	}).catch(err => {
-		document.getElementById('seryJoin').innerHTML = 'Couldn\'t join after having Sery_Bot authorized ❌';
+		document.getElementById('seryJoin').innerText = 'Couldn\'t join after having Sery_Bot authorized ❌';
 	});
 	document.getElementById('seryAuthorized').style.display = 'none';
 	document.getElementById('seryBanOn').style.display = 'inline';
@@ -64,15 +64,15 @@ async function seryBanUnconfirmed() {
 async function followban(client, on) {
 	if (on) {
 		await client.say('sery_bot', '!followban').then(() => {
-			document.getElementById('seryBan').innerHTML = 'Enabled Sery_Bot\'s ability to ban known bots ✅';
+			document.getElementById('seryBan').innerText = 'Enabled Sery_Bot\'s ability to ban known bots ✅';
 		}).catch(err => {
-			document.getElementById('seryBan').innerHTML = 'Couldn\'t enable Sery_Bot\'s ability to ban known bots ❌';
+			document.getElementById('seryBan').innerText = 'Couldn\'t enable Sery_Bot\'s ability to ban known bots ❌';
 		});
 	} else {
 		await client.say('sery_bot', '!followbanoff').then(() => {
-			document.getElementById('seryBan').innerHTML = 'Disabled Sery_Bot\'s ability to ban known bots ✅';
+			document.getElementById('seryBan').innerText = 'Disabled Sery_Bot\'s ability to ban known bots ✅';
 		}).catch(err => {
-			document.getElementById('seryBan').innerHTML = 'Couldn\'t disable Sery_Bot\'s ability to ban known bots ❌';
+			document.getElementById('seryBan').innerText = 'Couldn\'t disable Sery_Bot\'s ability to ban known bots ❌';
 		});
 	}
 }
@@ -85,15 +85,15 @@ async function seryOfflineLockUnconfirmed() {
 async function offlinelock(client, on) {
 	if (on) {
 		await client.say('sery_bot', '!offlinelock').then(() => {
-			document.getElementById('seryOfflineLock').innerHTML = 'Enabled Sery_Bot\'s Offline Lockdown ✅';
+			document.getElementById('seryOfflineLock').innerText = 'Enabled Sery_Bot\'s Offline Lockdown ✅';
 		}).catch(err => {
-			document.getElementById('seryOfflineLock').innerHTML = 'Couldn\'t enable Sery_Bot\'s Offline Lockdown ❌';
+			document.getElementById('seryOfflineLock').innerText = 'Couldn\'t enable Sery_Bot\'s Offline Lockdown ❌';
 		});
 	} else {
 		await client.say('sery_bot', '!offlinelockoff').then(() => {
-			document.getElementById('seryOfflineLock').innerHTML = 'Disabled Sery_Bot\'s Offline Lockdown ✅';
+			document.getElementById('seryOfflineLock').innerText = 'Disabled Sery_Bot\'s Offline Lockdown ✅';
 		}).catch(err => {
-			document.getElementById('seryOfflineLock').innerHTML = 'Couldn\'t disable Sery_Bot\'s Offline Lockdown ❌';
+			document.getElementById('seryOfflineLock').innerText = 'Couldn\'t disable Sery_Bot\'s Offline Lockdown ❌';
 		});
 	}
 }
@@ -106,15 +106,15 @@ async function seryOnlineNotifUnconfirmed() {
 async function onlinenotif(client, on) {
 	if (on) {
 		await client.say('sery_bot', '!onlinenotif').then(() => {
-			document.getElementById('seryOnlineNotif').innerHTML = 'Enabled Sery_Bot\'s Online Notification ✅';
+			document.getElementById('seryOnlineNotif').innerText = 'Enabled Sery_Bot\'s Online Notification ✅';
 		}).catch(err => {
-			document.getElementById('seryOnlineNotif').innerHTML = 'Couldn\'t enable Sery_Bot\'s Online Notification ❌';
+			document.getElementById('seryOnlineNotif').innerText = 'Couldn\'t enable Sery_Bot\'s Online Notification ❌';
 		});
 	} else {
 		await client.say('sery_bot', '!onlinenotifoff').then(() => {
-			document.getElementById('seryOnlineNotif').innerHTML = 'Disabled Sery_Bot\'s Online Notification ✅';
+			document.getElementById('seryOnlineNotif').innerText = 'Disabled Sery_Bot\'s Online Notification ✅';
 		}).catch(err => {
-			document.getElementById('seryOnlineNotif').innerHTML = 'Couldn\'t disable Sery_Bot\'s Online Notification ❌';
+			document.getElementById('seryOnlineNotif').innerText = 'Couldn\'t disable Sery_Bot\'s Online Notification ❌';
 		});
 	}
 }
