@@ -31,3 +31,6 @@ span {
 	color: white;
 	margin: 5px;
 }
+iframe {
+	border: 0;
+}
