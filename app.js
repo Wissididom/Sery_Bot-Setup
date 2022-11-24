@@ -47,7 +47,7 @@ async function makeSureSeryBotIsMod() {
 		}).then(async res => {
 			switch (res.status) {
 				case 204: // 204 No Content
-					document.getElementById('modSery').innerText = 'Made sure Sery_Bot a Mod ✅ (Modded Sery_Bot)';
+					document.getElementById('modSery').innerText = 'Made sure Sery_Bot is a Mod ✅ (Modded Sery_Bot)';
 					document.getElementById('seryAuthorized').style.display = 'inline';
 					break;
 				case 400: // 400 Bad Request - Must be banned because everything else cannot happen (broadcaster_id not found, user_id not found, already a mod)
