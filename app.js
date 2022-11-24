@@ -44,7 +44,7 @@ async function makeSureSeryBotIsMod() {
 				'Client-ID': '3mae1yavxj9shdb5ucwpn3w7s54lie',
 				'Authorization': `Bearer ${accessToken}`
 			}
-		}).then(res => {
+		}).then(async res => {
 			switch (res.status) {
 				case 204: // 204 No Content
 					document.getElementById('modSery').innerText = 'Made sure Sery_Bot a Mod ✅ (Modded Sery_Bot)';
