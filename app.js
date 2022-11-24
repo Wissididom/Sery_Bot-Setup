@@ -9,7 +9,7 @@ async function connectAndStartSetup() {
 	client = new tmi.Client({
 		options: { debug: false },
 		identity: {
-			user.login,
+			username: user.login,
 			password: accessToken
 		},
 		channels: [user.login, 'sery_bot']
