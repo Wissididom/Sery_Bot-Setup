@@ -35,7 +35,7 @@ async function makeSureSeryBotIsMod() {
 		}
 	}).then(res => res.json()).then(json => json.data.map(d => d.user_id)));
 	if (mods.includes('402337290')) { // 402337290 = Sery_Bot
-		document.getElementById('modSery').innerText = 'Made sure Sery_Bot a Mod ✅ (Sery_Bot already is a mod)';
+		document.getElementById('modSery').innerText = 'Made sure Sery_Bot is a Mod ✅ (Sery_Bot already is a mod)';
 		document.getElementById('seryAuthorized').style.display = 'inline';
 	} else {
 		await fetch(`https://api.twitch.tv/helix/moderation/moderators?broadcaster_id=${user.id}&user_id=402337290`, { // 402337290 = Sery_Bot
