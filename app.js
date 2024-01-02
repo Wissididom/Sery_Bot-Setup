@@ -101,6 +101,8 @@ async function join(client) {
 	document.getElementById('seryOfflineLockOff').style.display = 'inline';
 	document.getElementById('seryOnlineNotifOn').style.display = 'inline';
 	document.getElementById('seryOnlineNotifOff').style.display = 'inline';
+	document.getElementById('seryAdTimerOn').style.display = 'inline';
+	document.getElementById('seryAdTimerOff').style.display = 'inline';
 }
 async function seryBanConfirmed() {
 	await followban(client, true);
@@ -162,6 +164,27 @@ async function onlinenotif(client, on) {
 			document.getElementById('seryOnlineNotif').innerText = 'Disabled Sery_Bot\'s Online Notification ✅';
 		}).catch(err => {
 			document.getElementById('seryOnlineNotif').innerText = 'Couldn\'t disable Sery_Bot\'s Online Notification ❌';
+		});
+	}
+}
+async function seryAdTimerConfirmed() {
+	await adtimer(client, true);
+}
+async function seryAdTimerUnconfirmed() {
+	await adtimer(client, false);
+}
+async function adtimer(client, on) {
+	if (on) {
+		await client.say('sery_bot', '!adtimer').then(() => {
+			document.getElementById('seryAdTimer').innerText = 'Enabled Sery_Bot\'s Ad Timer ✅';
+		}).catch(err => {
+			document.getElementById('seryAdTimer').innerText = 'Couldn\'t enable Sery_Bot\'s Ad Timer ❌';
+		});
+	} else {
+		await client.say('sery_bot', '!onlinenotifoff').then(() => {
+			document.getElementById('seryAdTimer').innerText = 'Disabled Sery_Bot\'s Ad Timer ✅';
+		}).catch(err => {
+			document.getElementById('seryAdTimer').innerText = 'Couldn\'t disable Sery_Bot\'s Ad Timer ❌';
 		});
 	}
 }
