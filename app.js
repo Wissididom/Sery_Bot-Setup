@@ -149,12 +149,6 @@ async function offlinelock(on) {
 		});
 	}
 }
-async function seryOnlineNotifConfirmed() {
-	await onlinenotif(true);
-}
-async function seryOnlineNotifUnconfirmed() {
-	await onlinenotif(false);
-}
 async function onlinenotif(on) {
 	if (on) {
 		await sendChatMessage('402337290', user.id, '!onlinenotif').then((res) => { // 402337290 = Sery_Bot
