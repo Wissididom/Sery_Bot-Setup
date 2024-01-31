@@ -1,31 +1,8 @@
 var accessToken = getHashValue('access_token');
 var user = null;
-var client;
 function getHashValue(key) {
 	matches = location.hash.match(new RegExp(key+'=([^&]*)'));
 	return matches ? matches[1] : null;
-}
-async function connectAndStartSetup() {
-	client = new tmi.Client({
-		options: { debug: false },
-		identity: {
-			username: user.login,
-			password: accessToken
-		},
-		channels: [user.login, 'sery_bot']
-	});
-	await client.connect().then(([server, port]) => {
-		var statusBox = document.getElementById('statusBox');
-		statusBox.innerText = `Connected to ${server}:${port}`;
-		statusBox.classList = 'green';
-		console.log(`Connected to ${server}:${port}`);
-	}).catch(err => {
-		var statusBox = document.getElementById('statusBox');
-		statusBox.innerText = `Error connecting to Twitch Chat: ${err}`;
-		statusBox.classList = 'red';
-		console.error(`Error connecting to Twitch Chat: ${err}`);
-	});
-	makeSureSeryBotIsMod();
 }
 async function makeSureSeryBotIsMod() {
 	let mods = (await fetch(`https://api.twitch.tv/helix/moderation/moderators?broadcaster_id=${user.id}&user_id=402337290`, { // 402337290 = Sery_Bot
@@ -85,13 +62,36 @@ async function makeSureSeryBotIsMod() {
 		});
 	}
 }
-async function seryAuthorizationConfirmed() {
-	await join(client);
+async function sendChatMessage(channelId, senderId, message) {
+	await fetch('https://api.twitch.tv/helix/chat/messages', {
+		method: 'POST',
+		headers: {
+			'Client-ID': '3mae1yavxj9shdb5ucwpn3w7s54lie',
+			'Authorization': `Bearer ${accessToken}`,
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			broadcaster_id: channelId,
+			sender_id: senderId,
+			message
+		})
+	}).then(async res => {
+		switch (res.status) {
+			case 200: // 200 Ok
+				return res;
+			case 400: // 400 Bad Request - Missing or invalid broadcaster_id, missing or invalid sender_id, missing message, invalid reply_parent_message_id
+			case 401: // 401 Unauthorized
+			case 403: // 403 Forbidden - The sender is not permitted to send chat messages to the broadcaster's chat room
+			case 422: // 422 Unprocessable Entity - The message is too large
+			default:
+				throw res;
+		}
+	});
 }
-async function join(client) {
-	await client.say('sery_bot', '!join').then(() => {
+async function join() {
+	await sendChatMessage('402337290', user.id, '!join').then((res) => { // 402337290 = Sery_Bot
 		document.getElementById('seryJoin').innerText = 'Joined after having Sery_Bot authorized ✅';
-	}).catch(err => {
+	}).catch((res) => {
 		document.getElementById('seryJoin').innerText = 'Couldn\'t join after having Sery_Bot authorized ❌';
 	});
 	document.getElementById('seryAuthorized').style.display = 'none';
@@ -104,86 +104,62 @@ async function join(client) {
 	document.getElementById('seryAdTimerOn').style.display = 'inline';
 	document.getElementById('seryAdTimerOff').style.display = 'inline';
 }
-async function seryBanConfirmed() {
-	await followban(client, true);
-}
-async function seryBanUnconfirmed() {
-	await followban(client, false);
-}
-async function followban(client, on) {
+async function followban(on) {
 	if (on) {
-		await client.say('sery_bot', '!followban').then(() => {
+		await sendChatMessage('402337290', user.id, '!followban').then((res) => { // 402337290 = Sery_Bot
 			document.getElementById('seryBan').innerText = 'Enabled Sery_Bot\'s ability to ban known bots ✅';
-		}).catch(err => {
+		}).catch((res) => {
 			document.getElementById('seryBan').innerText = 'Couldn\'t enable Sery_Bot\'s ability to ban known bots ❌';
 		});
 	} else {
-		await client.say('sery_bot', '!followbanoff').then(() => {
+		await sendChatMessage('402337290', user.id, '!followbanoff').then((res) => { // 402337290 = Sery_Bot
 			document.getElementById('seryBan').innerText = 'Disabled Sery_Bot\'s ability to ban known bots ✅';
-		}).catch(err => {
+		}).catch((res) => {
 			document.getElementById('seryBan').innerText = 'Couldn\'t disable Sery_Bot\'s ability to ban known bots ❌';
 		});
 	}
 }
-async function seryOfflineLockConfirmed() {
-	await offlinelock(client, true);
-}
-async function seryOfflineLockUnconfirmed() {
-	await offlinelock(client, false);
-}
-async function offlinelock(client, on) {
+async function offlinelock(on) {
 	if (on) {
-		await client.say('sery_bot', '!offlinelock').then(() => {
+		await sendChatMessage('402337290', user.id, '!offlinelock').then((res) => { // 402337290 = Sery_Bot
 			document.getElementById('seryOfflineLock').innerText = 'Enabled Sery_Bot\'s Offline Lockdown ✅';
-		}).catch(err => {
+		}).catch((res) => {
 			document.getElementById('seryOfflineLock').innerText = 'Couldn\'t enable Sery_Bot\'s Offline Lockdown ❌';
 		});
 	} else {
-		await client.say('sery_bot', '!offlinelockoff').then(() => {
+		await sendChatMessage('402337290', user.id, '!offlinelockoff').then((res) => { // 402337290 = Sery_Bot
 			document.getElementById('seryOfflineLock').innerText = 'Disabled Sery_Bot\'s Offline Lockdown ✅';
-		}).catch(err => {
+		}).catch((res) => {
 			document.getElementById('seryOfflineLock').innerText = 'Couldn\'t disable Sery_Bot\'s Offline Lockdown ❌';
 		});
 	}
 }
-async function seryOnlineNotifConfirmed() {
-	await onlinenotif(client, true);
-}
-async function seryOnlineNotifUnconfirmed() {
-	await onlinenotif(client, false);
-}
-async function onlinenotif(client, on) {
+async function onlinenotif(on) {
 	if (on) {
-		await client.say('sery_bot', '!onlinenotif').then(() => {
+		await sendChatMessage('402337290', user.id, '!onlinenotif').then((res) => { // 402337290 = Sery_Bot
 			document.getElementById('seryOnlineNotif').innerText = 'Enabled Sery_Bot\'s Online Notification ✅';
-		}).catch(err => {
+		}).catch((res) => {
 			document.getElementById('seryOnlineNotif').innerText = 'Couldn\'t enable Sery_Bot\'s Online Notification ❌';
 		});
 	} else {
-		await client.say('sery_bot', '!onlinenotifoff').then(() => {
+		await sendChatMessage('402337290', user.id, '!onlinenotifoff').then((res) => { // 402337290 = Sery_Bot
 			document.getElementById('seryOnlineNotif').innerText = 'Disabled Sery_Bot\'s Online Notification ✅';
-		}).catch(err => {
+		}).catch((res) => {
 			document.getElementById('seryOnlineNotif').innerText = 'Couldn\'t disable Sery_Bot\'s Online Notification ❌';
 		});
 	}
 }
-async function seryAdTimerConfirmed() {
-	await adtimer(client, true);
-}
-async function seryAdTimerUnconfirmed() {
-	await adtimer(client, false);
-}
-async function adtimer(client, on) {
+async function adtimer(on) {
 	if (on) {
-		await client.say('sery_bot', '!adtimer').then(() => {
+		await sendChatMessage('402337290', user.id, '!adtimer').then((res) => { // 402337290 = Sery_Bot
 			document.getElementById('seryAdTimer').innerText = 'Enabled Sery_Bot\'s Ad Timer ✅';
-		}).catch(err => {
+		}).catch((res) => {
 			document.getElementById('seryAdTimer').innerText = 'Couldn\'t enable Sery_Bot\'s Ad Timer ❌';
 		});
 	} else {
-		await client.say('sery_bot', '!onlinenotifoff').then(() => {
+		await sendChatMessage('402337290', user.id, '!adtimeroff').then((res) => { // 402337290 = Sery_Bot
 			document.getElementById('seryAdTimer').innerText = 'Disabled Sery_Bot\'s Ad Timer ✅';
-		}).catch(err => {
+		}).catch((res) => {
 			document.getElementById('seryAdTimer').innerText = 'Couldn\'t disable Sery_Bot\'s Ad Timer ❌';
 		});
 	}
@@ -198,6 +174,6 @@ if (window.accessToken) {
 				'Authorization': `Bearer ${accessToken}`
 			}
 		}).then(res => res.json()).then(json => json.data[0]));
-		connectAndStartSetup();
+		makeSureSeryBotIsMod();
 	})();
 }
