@@ -7,8 +7,7 @@
 		<link rel="stylesheet" href="styles.css">
 	</head>
 	<body>
-		<a id="authorizeSetupBtn" href="https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=3mae1yavxj9shdb5ucwpn3w7s54lie&redirect_uri=https%3A%2F%2Fsbs.wissididom.me&scope=chat:read+chat:edit+channel:manage:moderators+channel:manage:vips">Authorize Setup</a>
-		<div id="statusBox"></div><p></p>
+		<a id="authorizeSetupBtn" href="https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=3mae1yavxj9shdb5ucwpn3w7s54lie&redirect_uri=https%3A%2F%2Fsbs.wissididom.me&scope=user:write:chat+channel:manage:moderators+channel:manage:vips">Authorize Setup</a>
 		<span id="modSery">Make sure Sery_Bot is a Mod</span><p></p>
 		<a id="authorizeSeryBtn" href="https://sery.codes/twitchapi/authenticate" target="_blank">Authorize Sery_Bot</a><p></p>
 		<button id="seryAuthorized" onclick="seryAuthorizationConfirmed()">Click here when you've authorized Sery_Bot</button><p></p>
@@ -27,7 +26,6 @@
 		<span id="seryAdTimer">Enabling/Disabling Sery_Bot's Ad Timer</span><p></p>
 		<span>Sery_Bot's Twitch Chat (To check for Sery_Bot's own responses):</span><p></p>
 		<iframe src="https://www.twitch.tv/embed/sery_bot/chat?darkpopout&amp;parent=sery-bot-setup.pages.dev&amp;parent=sbs.wissididom.me" width="50%" height="100%;">IFrame not supported!</iframe>
-		<script src="tmi.min.js"></script>
 		<script src="app.js"></script>
 	</body>
 </html>
