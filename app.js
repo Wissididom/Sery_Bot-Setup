@@ -88,9 +88,6 @@ async function sendChatMessage(channelId, senderId, message) {
 		}
 	});
 }
-async function seryAuthorizationConfirmed() {
-	await join();
-}
 async function join() {
 	await sendChatMessage('402337290', user.id, '!join').then((res) => { // 402337290 = Sery_Bot
 		document.getElementById('seryJoin').innerText = 'Joined after having Sery_Bot authorized ✅';
