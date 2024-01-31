@@ -107,12 +107,6 @@ async function join() {
 	document.getElementById('seryAdTimerOn').style.display = 'inline';
 	document.getElementById('seryAdTimerOff').style.display = 'inline';
 }
-async function seryBanConfirmed() {
-	await followban(true);
-}
-async function seryBanUnconfirmed() {
-	await followban(false);
-}
 async function followban(on) {
 	if (on) {
 		await sendChatMessage('402337290', user.id, '!followban').then((res) => { // 402337290 = Sery_Bot
