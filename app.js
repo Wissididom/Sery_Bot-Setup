@@ -128,12 +128,6 @@ async function followban(on) {
 		});
 	}
 }
-async function seryOfflineLockConfirmed() {
-	await offlinelock(true);
-}
-async function seryOfflineLockUnconfirmed() {
-	await offlinelock(false);
-}
 async function offlinelock(on) {
 	if (on) {
 		await sendChatMessage('402337290', user.id, '!offlinelock').then((res) => { // 402337290 = Sery_Bot
