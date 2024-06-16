@@ -7,7 +7,7 @@
 body {
 	background-color: black;
 }
-a {
+.twitch-style-btn {
 	display: block;
 	width: 175px;
 	height: 25px;
