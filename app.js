@@ -103,6 +103,8 @@ async function join() {
 	document.getElementById('seryOnlineNotifOff').style.display = 'inline';
 	document.getElementById('seryAdTimerOn').style.display = 'inline';
 	document.getElementById('seryAdTimerOff').style.display = 'inline';
+	document.getElementById('seryRaidOutOn').style.display = 'inline';
+	document.getElementById('seryRaidOutOff').style.display = 'inline';
 }
 async function followban(on) {
 	if (on) {
@@ -161,6 +163,58 @@ async function adtimer(on) {
 			document.getElementById('seryAdTimer').innerText = 'Disabled Sery_Bot\'s Ad Timer ✅';
 		}).catch((res) => {
 			document.getElementById('seryAdTimer').innerText = 'Couldn\'t disable Sery_Bot\'s Ad Timer ❌';
+		});
+	}
+}
+async function adtimermsg(begin) {
+	if (begin) {
+		await sendChatMessage('402337290', user.id, '!adtimermsg ' + document.getElementById('seryAdTimerMsgText').value).then((res) => { // 402337290 = Sery_Bot
+			document.getElementById('seryAdTimer').innerText = 'Set Sery_Bot\'s Ad Timer Begin Message ✅';
+		}).catch((res) => {
+			document.getElementById('seryAdTimer').innerText = 'Couldn\'t set Sery_Bot\'s Ad Timer Begin Message ❌';
+		});
+	} else {
+		await sendChatMessage('402337290', user.id, '!adtimermsgend ' + document.getElementById('seryAdTimerMsgEndText').value).then((res) => { // 402337290 = Sery_Bot
+			document.getElementById('seryAdTimer').innerText = 'Set Sery_Bot\'s Ad Timer End Message ✅';
+		}).catch((res) => {
+			document.getElementById('seryAdTimer').innerText = 'Couldn\'t set Sery_Bot\'s Ad Timer End Message ❌';
+		});
+	}
+}
+async function adtimerclear() {
+	await sendChatMessage('402337290', user.id, '!adtimermsg ' + document.getElementById('seryAdTimerMsgText').value).then((res) => { // 402337290 = Sery_Bot
+		document.getElementById('seryAdTimer').innerText = "Reset Sery_Bot's Ad Timer Begin Message to it's default value ✅";
+	}).catch((res) => {
+		document.getElementById('seryAdTimer').innerText = "Couldn't reset Sery_Bot\s Ad Timer Begin Message to it's default value ❌";
+	});
+}
+async function raidout(on) {
+	if (on) {
+		await sendChatMessage('402337290', user.id, '!raidoutalert').then((res) => { // 402337290 = Sery_Bot
+			document.getElementById('seryRaidOut').innerText = 'Enabled Sery_Bot\'s Raid Out Alert ✅';
+		}).catch((res) => {
+			document.getElementById('seryRaidOut').innerText = 'Couldn\'t enable Sery_Bot\'s Raid Out Alert ❌';
+		});
+	} else {
+		await sendChatMessage('402337290', user.id, '!raidoutalertoff').then((res) => { // 402337290 = Sery_Bot
+			document.getElementById('seryRaidOut').innerText = 'Disabled Sery_Bot\'s Raid Out Alert ✅';
+		}).catch((res) => {
+			document.getElementById('seryRaidOut').innerText = 'Couldn\'t disable Sery_Bot\'s Raid Out Alert ❌';
+		});
+	}
+}
+async function raidoutmsg(clear) {
+	if (clear) {
+		await sendChatMessage('402337290', user.id, '!clearraidoutmsg').then((res) => { // 402337290 = Sery_Bot
+			document.getElementById('seryRaidOut').innerText = 'Reset Sery_Bot\'s Raid Out Message to it\'s default value ✅';
+		}).catch((res) => {
+			document.getElementById('seryRaidOut').innerText = 'Couldn\'t reset Sery_Bot\'s Raid Out Message to it\'s default value ❌';
+		});
+	} else {
+		await sendChatMessage('402337290', user.id, '!raidoutmsg').then((res) => { // 402337290 = Sery_Bot
+			document.getElementById('seryRaidOut').innerText = 'Set Sery_Bot\'s Raid Out Message ✅';
+		}).catch((res) => {
+			document.getElementById('seryRaidOut').innerText = 'Couldn\'t set Sery_Bot\'s Raid Out Message ❌';
 		});
 	}
 }
