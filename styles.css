@@ -7,7 +7,7 @@
 body {
 	background-color: black;
 }
-a {
+.twitch-style-btn {
 	display: block;
 	width: 175px;
 	height: 25px;
@@ -21,7 +21,13 @@ a {
 	text-decoration: none;
 	margin: 5px;
 }
+.moreinfo {
+	display: none;
+}
 #authorizeSeryBtn {
+	display: none;
+}
+input {
 	display: none;
 }
 button {
