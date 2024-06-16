@@ -21,6 +21,9 @@ body {
 	text-decoration: none;
 	margin: 5px;
 }
+.moreinfo {
+	display: none;
+}
 #authorizeSeryBtn {
 	display: none;
 }

@@ -110,6 +110,9 @@ async function join() {
 	document.getElementById('seryRaidOutOff').style.display = 'inline';
 	document.getElementById('seryRaidOutMsgText').style.display = 'inline';
 	document.getElementById('seryRaidOutMsgClear').style.display = 'inline';
+	for (let tag of document.getElementsByClassName('moreinfo')) {
+		tag.style.display = 'inline';
+	}
 }
 async function followban(on) {
 	if (on) {
