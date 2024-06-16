@@ -24,17 +24,17 @@
 		<button id="seryAdTimerOn" onclick="adtimer(true)">Click here if you want Sery_Bot to notify you when an ad break begins</button>
 		<button id="seryAdTimerOff" onclick="adtimer(false)">Click here if you don't want Sery_Bot to notify you when when an ad break begins</button><p></p>
 		<span id="seryAdTimer">Enabling/Disabling Sery_Bot's Ad Timer</span><p></p>
-		<input type="text" id="seryAdTimerMsgText" placeholder="Ad Timer Begin Msg" />
+		<input type="text" id="seryAdTimerMsgText" placeholder="Ad Timer Begin Msg" minlength="1" maxlength="480" />
 		<button id="seryAdTimerMsg" onclick="adtimermsg(true)">Click here if you want to change the custom message Sery_Bot uses when notifying about a ad break starting</button>
 		<a class="moreinfo" href="https://serycodes.carrd.co/#commands">More info</a><p></p>
-		<input type="text" id="seryAdTimerMsgEndText" placeholder="Ad Timer End Msg" />
+		<input type="text" id="seryAdTimerMsgEndText" placeholder="Ad Timer End Msg" minlength="1" maxlength="480" />
 		<button id="seryAdTimerMsgEnd" onclick="adtimermsg(false)">Click here if you want to change the custom message Sery_Bot uses when notifying about a ad break ending</button>
 		<a class="moreinfo" href="https://serycodes.carrd.co/#commands">More info</a><p></p>
 		<button id="seryAdTimerMsgClear" onclick="adtimerclear()">Click here if you want to clear custom ad timer messages you might have set</button><p></p>
 		<button id="seryRaidOutOn" onclick="raidout(true)">Click here if you want Sery_Bot to send a message when you raid out</button>
 		<button id="seryRaidOutOff" onclick="raidout(false)">Click here if you don't want Sery_Bot to send a message when you raid out</button><p></p>
 		<span id="seryRaidOut">Enabling/Disabling Sery_Bot's Raid Out Messages</span><p></p>
-		<input type="text" id="seryRaidOutMsgText" placeholder="Raid Out Msg" /><button id="seryRaidOutMsg" onclick="raidoutmsg(false)">Click here if you want to change the custom message Sery_Bot sends when you raid out</button>
+		<input type="text" id="seryRaidOutMsgText" placeholder="Raid Out Msg" minlength="1" maxlength="480" /><button id="seryRaidOutMsg" onclick="raidoutmsg(false)">Click here if you want to change the custom message Sery_Bot sends when you raid out</button>
 		<button id="seryRaidOutMsgClear" onclick="raidoutmsg(true)">Click here if you want to clear the custom raid out messages you might have set</button><p></p>
 		<span>Sery_Bot's Twitch Chat (To check for Sery_Bot's own responses):</span><p></p>
 		<iframe src="https://www.twitch.tv/embed/sery_bot/chat?darkpopout&amp;parent=sery-bot-setup.pages.dev&amp;parent=sbs.wissididom.me" width="50%" height="100%;">IFrame not supported!</iframe>
