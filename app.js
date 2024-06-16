@@ -103,8 +103,13 @@ async function join() {
 	document.getElementById('seryOnlineNotifOff').style.display = 'inline';
 	document.getElementById('seryAdTimerOn').style.display = 'inline';
 	document.getElementById('seryAdTimerOff').style.display = 'inline';
+	document.getElementById('seryAdTimerMsgText').style.display = 'inline';
+	document.getElementById('seryAdTimerMsgEndText').style.display = 'inline';
+	document.getElementById('seryAdTimerMsgClear').style.display = 'inline';
 	document.getElementById('seryRaidOutOn').style.display = 'inline';
 	document.getElementById('seryRaidOutOff').style.display = 'inline';
+	document.getElementById('seryRaidOutMsgText').style.display = 'inline';
+	document.getElementById('seryRaidOutMsgClear').style.display = 'inline';
 }
 async function followban(on) {
 	if (on) {
